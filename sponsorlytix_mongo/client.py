@@ -14,7 +14,7 @@ class SponsorlytixMongoClient:
         return self.client[collection_name]
 
     @classmethod
-    def get_client(db_name='sponsorlytix'):
+    def get_client(cls, db_name='sponsorlytix'):
         mongo_url = os.environ.get('MONGO_URL')
         mongo_conn = MongoClient(mongo_url, 27017)
         return mongo_conn[db_name]
