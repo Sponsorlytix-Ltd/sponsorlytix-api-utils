@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 
-from config import get_config
+from sponsorlytix_selenium.config import get_config
 
 
 configs = get_config()
@@ -21,9 +21,9 @@ class SponsorlytixDriver:
         self.wait = WebDriverWait(self.driver, configs.timeout)
 
     def __get_remote_driver(self):
-        driver_host = "3.16.155.212"
-        driver_user = "sponsorlytix"
-        driver_password = "HXMswfgn7E7Y"
+        driver_host = configs.driver_host
+        driver_user = configs.driver_user
+        driver_password = configs.driver_password
 
         driver_remote_url = f"http://{driver_user}:{driver_password}@{driver_host}:4444/wd/hub"
 
