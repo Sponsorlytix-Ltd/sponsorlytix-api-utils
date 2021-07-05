@@ -48,7 +48,6 @@ class SponsorlytixDriver:
         options.add_argument(
             "user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
         options.add_argument("--disable-gpu")
-        options.binary_location = DRIVER_PATH
         return Chrome(executable_path=DRIVER_PATH, options=options)
 
     def __get_firefox_driver(self):
