@@ -4,6 +4,6 @@ from my_pip_package import __version__
 setup(
     name='sponsorlytix_utils',
     description='Sponsorlytix code utils',
-    version=__version__,
+    version='1.1',
     author='Sponsorlytix Team'
 )
