@@ -1,7 +1,5 @@
 from sponsorlytix_api_utils.sponsorlytix_country.database import countries_database
 
-find_by_keys = ['name', 'code', 'continent']
-
 
 def find_country(search_value, find_by):
     valid_find_by = ['code', 'name', 'continent']
@@ -28,7 +26,8 @@ def find_continent(search_value, find_by):
     raise ValueError(
         'find_by value is not valid, try to search by this values: name, code')
 
-def all_country_database():
+
+def world_database():
     filter_continent_function = lambda value: value.get('type') == 'continent'
     filter_country_function =  lambda value: value.get('type') == 'country'
     continents = list(filter(filter_continent_function, countries_database))
