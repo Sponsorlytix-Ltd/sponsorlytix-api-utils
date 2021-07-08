@@ -44,10 +44,18 @@ class SponsorlytixDriver:
 
     def __get_chrome_driver(self):
         options = Options()
-        DRIVER_PATH = str(Path("chromedriver").resolve())
+        DRIVER_PATH = os.environ.get('CHROME_DRIVER')
         options.add_argument(
             "user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
         options.add_argument("--disable-gpu")
+        options.add_argument("--no-sandbox")
+        options.add_argument("start-maximized")
+        options.add_argument("disable-infobars")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_experimental_option("prefs", {
+            "profile.default_content_setting_values.notifications": 1
+        })
         return Chrome(executable_path=DRIVER_PATH, options=options)
 
     def __get_firefox_driver(self):
