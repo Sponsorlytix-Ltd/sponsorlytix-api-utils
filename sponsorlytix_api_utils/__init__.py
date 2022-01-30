@@ -1,3 +1,4 @@
 from sponsorlytix_api_utils.sponsorlytix_aws.comprehend import Comprehend as SponsorlytixAWSComprehend
 from sponsorlytix_api_utils.sponsorlytix_driver.driver import SponsorlytixDriver
 from sponsorlytix_api_utils.sponsorlytix_mongo.client import SponsorlytixMongoClient
+from sponsorlytix_api_utils.file_helper.file_extension import FileExtension
