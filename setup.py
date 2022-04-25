@@ -15,7 +15,7 @@ requirements = [
 setup(
     name='sponsorlytix_api_utils',
     description='Sponsorlytix code utils',
-    version='1.2',
+    version='1.2.1',
     author='Sponsorlytix Team',
     install_requires=requirements,
     setup_requires=['pytest-runner'],
