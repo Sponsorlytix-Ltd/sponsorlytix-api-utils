@@ -56,12 +56,13 @@ class SponsorlytixDriver:
         options.add_experimental_option("prefs", {
             "profile.default_content_setting_values.notifications": 1
         })
+        options.binary_location = os.environ.get('CHROME_BINARY_LOCATION')
         return Chrome(executable_path=DRIVER_PATH, options=options)
 
     def __get_firefox_driver(self):
-        driver_dir = os.environ.get('FIREFOX_DRIVER') 
+        driver_dir = os.environ.get('FIREFOX_DRIVER')
         return Firefox(executable_path=driver_dir)
- 
+
     def quit(self):
         self.driver.quit()
 
@@ -96,7 +97,7 @@ class SponsorlytixDriver:
             },
             '.': {
                 'wait_by': By.CSS_SELECTOR,
-                'function': lambda elm : driver.find_element_by_class_name(elm[1:]),
+                'function': lambda elm: driver.find_element_by_class_name(elm[1:]),
             }
         }
 
@@ -105,8 +106,8 @@ class SponsorlytixDriver:
 
         if finder:
             if wait_until and not parent_element:
-                self.wait.until(EC.visibility_of_element_located((finder.get('wait_by'), element)))
+                self.wait.until(EC.visibility_of_element_located(
+                    (finder.get('wait_by'), element)))
             return finder.get('function')(element)
 
         return driver.find_element_by_name(element)
-        
