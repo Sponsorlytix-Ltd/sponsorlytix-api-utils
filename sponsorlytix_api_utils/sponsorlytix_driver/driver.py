@@ -47,6 +47,7 @@ class SponsorlytixDriver:
         DRIVER_PATH = os.environ.get('CHROME_DRIVER')
         options.add_argument(
             "user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
+        options.add_argument('--headless')
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
         options.add_argument("start-maximized")
