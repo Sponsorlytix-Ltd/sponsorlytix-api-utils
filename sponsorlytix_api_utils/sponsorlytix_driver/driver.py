@@ -1,8 +1,7 @@
 import os
-from pathlib import Path
-
 from selenium.webdriver import Chrome, Firefox, Remote
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FireFoxOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -43,7 +42,7 @@ class SponsorlytixDriver:
             command_executor=driver_remote_url)
 
     def __get_chrome_driver(self):
-        options = Options()
+        options = ChromeOptions()
         DRIVER_PATH = os.environ.get('CHROME_DRIVER')
         options.add_argument(
             "user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
@@ -54,15 +53,23 @@ class SponsorlytixDriver:
         options.add_argument("disable-infobars")
         options.add_argument("--disable-extensions")
         options.add_argument("--disable-dev-shm-usage")
-        options.add_experimental_option("prefs", {
-            "profile.default_content_setting_values.notifications": 1
-        })
+        options.add_argument("--no-zygote")
+        options.add_argument("--single-process")
+        options.add_argument("--user-data-dir=/tmp/chrome-user-data")
+        options.add_argument("--remote-debugging-port=9222")
         options.binary_location = os.environ.get('CHROME_BINARY_LOCATION')
+
         return Chrome(executable_path=DRIVER_PATH, options=options)
 
     def __get_firefox_driver(self):
         driver_dir = os.environ.get('FIREFOX_DRIVER')
-        return Firefox(executable_path=driver_dir)
+        options = FireFoxOptions()
+        options.binary_location = os.environ.get('FIREFOX_BINARY_LOCATION')
+        driver_dir = os.environ.get('FIREFOX_DRIVER')
+        os.environ['MOZ_HEADLESS'] = '1'
+        options = FireFoxOptions()
+
+        return Firefox(executable_path=driver_dir, options=options)
 
     def quit(self):
         self.driver.quit()
