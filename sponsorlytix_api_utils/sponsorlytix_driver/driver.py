@@ -53,10 +53,10 @@ class SponsorlytixDriver:
         options.add_argument("disable-infobars")
         options.add_argument("--disable-extensions")
         options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("window-size={},{}".format(1920, 1080))
         options.add_argument("--no-zygote")
         options.add_argument("--single-process")
-        options.add_argument("--user-data-dir=/tmp/chrome-user-data")
-        options.add_argument("--remote-debugging-port=9222")
+        options.add_argument("--remote-debugging-port=9230")
         options.binary_location = os.environ.get('CHROME_BINARY_LOCATION')
 
         return Chrome(executable_path=DRIVER_PATH, options=options)
