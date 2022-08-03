@@ -64,8 +64,8 @@ class SponsorlytixDriver:
     def __get_firefox_driver(self):
         driver_dir = os.environ.get('FIREFOX_DRIVER')
         log_dir = os.environ.get('FIREFOX_LOG_LOCATION')
-        options.binary_location = os.environ.get('FIREFOX_BINARY_LOCATION')
         options = FireFoxOptions()
+        options.binary_location = os.environ.get('FIREFOX_BINARY_LOCATION')
         os.environ['MOZ_HEADLESS'] = '1'
         options = FireFoxOptions()
 
