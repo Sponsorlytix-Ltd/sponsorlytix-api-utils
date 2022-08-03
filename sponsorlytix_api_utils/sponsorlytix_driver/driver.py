@@ -63,13 +63,13 @@ class SponsorlytixDriver:
 
     def __get_firefox_driver(self):
         driver_dir = os.environ.get('FIREFOX_DRIVER')
-        options = FireFoxOptions()
+        log_dir = os.environ.get('FIREFOX_LOG_LOCATION')
         options.binary_location = os.environ.get('FIREFOX_BINARY_LOCATION')
-        driver_dir = os.environ.get('FIREFOX_DRIVER')
+        options = FireFoxOptions()
         os.environ['MOZ_HEADLESS'] = '1'
         options = FireFoxOptions()
 
-        return Firefox(executable_path=driver_dir, options=options)
+        return Firefox(executable_path=driver_dir, options=options, log_path=log_dir)
 
     def quit(self):
         self.driver.quit()
