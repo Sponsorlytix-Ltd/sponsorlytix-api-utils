@@ -207,7 +207,7 @@ def remove_access_permissions(queue_url: str, label: str):
         raise
 
 
-def send_queue_message(queue_url: str, msg_body: str, msg_attributes: list = []):
+def send_queue_message(queue_url: str, msg_body: str, msg_attributes: dict = {}):
     """
     Sends a message to the specified queue.
     """
