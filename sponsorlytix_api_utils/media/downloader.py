@@ -3,7 +3,7 @@ import requests
 import shutil
 
 
-def download_media(media_url: str):
+def download_media_from_url(media_url: str):
     media_name = media_url.split("/")[-1]
     result = requests.get(media_url, stream=True)
 
@@ -17,6 +17,7 @@ def download_media(media_url: str):
         local_path = os.path.join(current_directory, media_name)
         with open(local_path, 'wb+') as destination:
             shutil.copyfileobj(result.raw, destination)
+
         return local_path, media_name
     else:
         raise Exception(f'Image {media_name} cannot be downloaded.')
