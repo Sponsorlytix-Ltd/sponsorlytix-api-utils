@@ -4,7 +4,7 @@ import shutil
 
 
 def download_media_from_url(media_url: str):
-    media_name = media_url.split("/")[-1]
+    media_name = media_url.split("/")[-1].split("?")[0]
     result = requests.get(media_url, stream=True)
 
     if result.status_code == 200:
