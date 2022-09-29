@@ -9,12 +9,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 class SponsorlytixDriver:
 
-    def __init__(self, config, crawler_name='Social Media Crawler', browser=None):
+    def __init__(self, config, crawler_name='Social Media Crawler', browser=None, is_headless=True):
         self.crawler_name = crawler_name
         self.config = config
         available_drivers = {
-            'CHROME': self.__get_chrome_driver,
-            'FIREFOX': self.__get_firefox_driver,
+            'CHROME': self.__get_chrome_driver(is_headless),
+            'FIREFOX': self.__get_firefox_driver(is_headless),
             'REMOTE': self.__get_remote_driver
         }
         driver_browser = browser.upper() if browser else self.config('browser', 'REMOTE')
