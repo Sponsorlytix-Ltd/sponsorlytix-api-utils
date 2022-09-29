@@ -41,12 +41,15 @@ class SponsorlytixDriver:
             desired_capabilities=capabilities,
             command_executor=driver_remote_url)
 
-    def __get_chrome_driver(self):
+    def __get_chrome_driver(self, is_headless=False):
         options = ChromeOptions()
         DRIVER_PATH = os.environ.get('CHROME_DRIVER')
         options.add_argument(
             "user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
-        options.add_argument('--headless')
+
+        if is_headless:
+            options.add_argument('--headless')
+
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
         options.add_argument("start-maximized")
@@ -61,12 +64,14 @@ class SponsorlytixDriver:
 
         return Chrome(executable_path=DRIVER_PATH, options=options)
 
-    def __get_firefox_driver(self):
+    def __get_firefox_driver(self, is_headless=False):
         driver_dir = os.environ.get('FIREFOX_DRIVER')
         log_dir = os.environ.get('FIREFOX_LOG_LOCATION')
         options = FireFoxOptions()
         options.binary_location = os.environ.get('FIREFOX_BINARY_LOCATION')
-        os.environ['MOZ_HEADLESS'] = '1'
+        if is_headless:
+            os.environ['MOZ_HEADLESS'] = '1'
+
         options = FireFoxOptions()
 
         return Firefox(executable_path=driver_dir, options=options, log_path=log_dir)
