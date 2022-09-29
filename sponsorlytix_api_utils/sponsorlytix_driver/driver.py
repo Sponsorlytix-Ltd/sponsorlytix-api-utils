@@ -41,7 +41,7 @@ class SponsorlytixDriver:
             desired_capabilities=capabilities,
             command_executor=driver_remote_url)
 
-    def __get_chrome_driver(self, is_headless=False):
+    def __get_chrome_driver(self, is_headless=True):
         options = ChromeOptions()
         DRIVER_PATH = os.environ.get('CHROME_DRIVER')
         options.add_argument(
@@ -64,7 +64,7 @@ class SponsorlytixDriver:
 
         return Chrome(executable_path=DRIVER_PATH, options=options)
 
-    def __get_firefox_driver(self, is_headless=False):
+    def __get_firefox_driver(self, is_headless=True):
         driver_dir = os.environ.get('FIREFOX_DRIVER')
         log_dir = os.environ.get('FIREFOX_LOG_LOCATION')
         options = FireFoxOptions()
