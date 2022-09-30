@@ -9,16 +9,19 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 class SponsorlytixDriver:
 
-    def __init__(self, config, crawler_name='Social Media Crawler', browser=None, is_headless=True):
+    def __init__(self, config, crawler_name='Social Media Crawler', browser=None, is_headless=True, use_custom_binary_location=True):
         self.crawler_name = crawler_name
         self.config = config
-        available_drivers = {
-            'CHROME': self.__get_chrome_driver(is_headless),
-            'FIREFOX': self.__get_firefox_driver(is_headless),
-            'REMOTE': self.__get_remote_driver
-        }
-        driver_browser = browser.upper() if browser else self.config('browser', 'REMOTE')
-        self.driver = available_drivers.get(driver_browser)()
+        self.driver: Remote
+        # driver_browser = browser.upper() if browser else self.config('browser', 'REMOTE')
+        if browser.upper() == 'CHROME':
+            self.driver = self.__get_chrome_driver(
+                is_headless, use_custom_binary_location)
+        elif browser.upper() == 'FIREFOX':
+            self.driver = self.__get_firefox_driver(is_headless),
+        elif browser.upper() == 'REMOTE':
+            self.driver = self.__get_remote_driver
+
         self.wait = WebDriverWait(self.driver, 5)
 
     def __get_remote_driver(self):
@@ -41,7 +44,7 @@ class SponsorlytixDriver:
             desired_capabilities=capabilities,
             command_executor=driver_remote_url)
 
-    def __get_chrome_driver(self, is_headless=True):
+    def __get_chrome_driver(self, is_headless=True, use_custom_binary_location=True):
         options = ChromeOptions()
         DRIVER_PATH = os.environ.get('CHROME_DRIVER')
         options.add_argument(
@@ -49,6 +52,7 @@ class SponsorlytixDriver:
 
         if is_headless:
             options.add_argument('--headless')
+            options.add_argument("--single-process")
 
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
@@ -58,9 +62,10 @@ class SponsorlytixDriver:
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("window-size={},{}".format(1920, 1080))
         options.add_argument("--no-zygote")
-        options.add_argument("--single-process")
         options.add_argument("--remote-debugging-port=9230")
-        options.binary_location = os.environ.get('CHROME_BINARY_LOCATION')
+        options.add_argument("disable-extensions")
+        if use_custom_binary_location:
+            options.binary_location = os.environ.get('CHROME_BINARY_LOCATION')
 
         return Chrome(executable_path=DRIVER_PATH, options=options)
 
