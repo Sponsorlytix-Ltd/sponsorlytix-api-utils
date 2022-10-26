@@ -1,4 +1,5 @@
 import boto3
+import os
 
 
 class Comprehend:
@@ -6,7 +7,8 @@ class Comprehend:
     def __init__(self, text, language='en'):
         self.language = language
         self.text = text
-        self.comprehend = boto3.client('comprehend', 'us-east-2')
+        self.comprehend = boto3.client(
+            'comprehend', os.environ.get('COMPREHEND_REGION'))
 
     def get_comprehend_data(self):
         comprehend_data = {
@@ -17,15 +19,18 @@ class Comprehend:
         return comprehend_data
 
     def __get_entities(self):
-        entities = self.comprehend.detect_entities(Text=self.text, LanguageCode=self.language)
+        entities = self.comprehend.detect_entities(
+            Text=self.text, LanguageCode=self.language)
         return entities.get('Entities')
 
     def __get_key_phrases(self):
-        phrases = self.comprehend.detect_key_phrases(Text=self.text, LanguageCode=self.language)
+        phrases = self.comprehend.detect_key_phrases(
+            Text=self.text, LanguageCode=self.language)
         return phrases.get('KeyPhrases')
 
     def __get_sentiment(self):
-        sentiment = self.comprehend.detect_sentiment(Text=self.text, LanguageCode=self.language)
+        sentiment = self.comprehend.detect_sentiment(
+            Text=self.text, LanguageCode=self.language)
         return {
             'score': sentiment.get('SentimentScore'),
             'sentiment': sentiment.get('Sentiment')
