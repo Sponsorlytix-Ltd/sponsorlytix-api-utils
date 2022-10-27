@@ -9,13 +9,15 @@ requirements = [
     's3transfer',
     'selenium',
     'six',
-    'urllib3'
+    'urllib3',
+    'requests',
+    'nltk'
 ]
 
 setup(
     name='sponsorlytix_api_utils',
     description='Sponsorlytix code utils',
-    version='2.1.1',
+    version='2.2.1',
     author='Sponsorlytix Team',
     install_requires=requirements,
     setup_requires=['pytest-runner'],
