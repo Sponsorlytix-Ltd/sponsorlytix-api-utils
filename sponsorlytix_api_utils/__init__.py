@@ -4,4 +4,5 @@ from sponsorlytix_api_utils.sponsorlytix_mongo.client import SponsorlytixMongoCl
 from sponsorlytix_api_utils.sponsorlytix_dynamodb.client import SponsorlytixDynamoClient
 from sponsorlytix_api_utils.file_helper.file_extension import FileExtension
 from sponsorlytix_api_utils.sponsorlytix_aws import sqs_client
+from sponsorlytix_api_utils.data_cleaning import text_cleansing
 from sponsorlytix_api_utils.sponsorlytix_aws.s3 import S3Client
