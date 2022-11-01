@@ -1,11 +1,14 @@
+import os
 from nltk.tokenize import word_tokenize
 from nltk.stem import SnowballStemmer
 from nltk.corpus import stopwords
 import re
 import nltk
 
-nltk.download('punkt')
-nltk.download('stopwords')
+nltk.data.path.append(os.environ.get('DOWNLOAD_DIR'))
+nltk.download("punkt", download_dir=os.environ.get('DOWNLOAD_DIR'))
+nltk.download('stopwords', download_dir=os.environ.get('DOWNLOAD_DIR'))
+
 # Let's get a list of stop words from the NLTK library
 stop = stopwords.words('english')
 # These words are important for our problem. We don't want to remove them.
