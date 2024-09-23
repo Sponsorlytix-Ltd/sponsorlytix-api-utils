@@ -9,7 +9,7 @@ logger = logging.getLogger()
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s: %(levelname)s: %(message)s')
 
-sqs_client = boto3.client("sqs", os.environ.get('SQS_REGION'))
+sqs_client = boto3.client("sqs", os.environ.get('SQS_REGION', 'eu-west-2'))
 
 
 def create_queue(queue_name: str, delay_secs=0, visibility_timeout=60, isFifo=False):

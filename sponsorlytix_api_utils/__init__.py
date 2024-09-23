@@ -1,8 +1,8 @@
-from sponsorlytix_api_utils.sponsorlytix_aws.comprehend import Comprehend as SponsorlytixAWSComprehend
-from sponsorlytix_api_utils.sponsorlytix_driver.driver import SponsorlytixDriver
+# from sponsorlytix_api_utils.sponsorlytix_aws.comprehend import Comprehend as SponsorlytixAWSComprehend
+# from sponsorlytix_api_utils.sponsorlytix_driver.driver import SponsorlytixDriver
 from sponsorlytix_api_utils.sponsorlytix_mongo.client import SponsorlytixMongoClient
-from sponsorlytix_api_utils.sponsorlytix_dynamodb.client import SponsorlytixDynamoClient
-from sponsorlytix_api_utils.file_helper.file_extension import FileExtension
-from sponsorlytix_api_utils.sponsorlytix_aws import sqs_client
-from sponsorlytix_api_utils.data_cleaning import text_cleansing
-from sponsorlytix_api_utils.sponsorlytix_aws.s3 import S3Client
+# from sponsorlytix_api_utils.sponsorlytix_dynamodb.client import SponsorlytixDynamoClient
+# from sponsorlytix_api_utils.file_helper.file_extension import FileExtension
+# from sponsorlytix_api_utils.sponsorlytix_aws import sqs_client
+# from sponsorlytix_api_utils.data_cleaning import text_cleansing
+# from sponsorlytix_api_utils.sponsorlytix_aws.s3 import S3Client
